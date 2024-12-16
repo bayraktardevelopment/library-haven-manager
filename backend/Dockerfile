@@ -5,9 +5,9 @@ WORKDIR /app
 # Gerekli sistem bağımlılıklarını yükleyin
 RUN apt-get update && apt-get install -y \
     pkg-config \
+    default-mysql-client \
     libmariadb-dev \
     gcc \
-    netcat-traditional \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Python bağımlılıklarını yüklemek için requirements.txt'yi kopyalayın
