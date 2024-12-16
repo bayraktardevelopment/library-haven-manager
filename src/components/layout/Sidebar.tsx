@@ -11,17 +11,17 @@ import {
 import { Book, Home, Library, LogOut, User, Users } from "lucide-react";
 
 const adminItems = [
-  { title: "Dashboard", icon: Home, url: "/" },
-  { title: "Books", icon: Book, url: "/books" },
-  { title: "Students", icon: Users, url: "/students" },
-  { title: "Profile", icon: User, url: "/profile" },
+  { title: "Ana Sayfa", icon: Home, url: "/" },
+  { title: "Kitaplar", icon: Book, url: "/books" },
+  { title: "Öğrenciler", icon: Users, url: "/students" },
+  { title: "Profil", icon: User, url: "/profile" },
 ];
 
 const studentItems = [
-  { title: "Dashboard", icon: Home, url: "/" },
-  { title: "Browse Books", icon: Book, url: "/books" },
-  { title: "My Borrows", icon: Library, url: "/my-borrows" },
-  { title: "Profile", icon: User, url: "/profile" },
+  { title: "Ana Sayfa", icon: Home, url: "/" },
+  { title: "Kitapları Görüntüle", icon: Book, url: "/books" },
+  { title: "Ödünç Aldıklarım", icon: Library, url: "/my-borrows" },
+  { title: "Profil", icon: User, url: "/profile" },
 ];
 
 export function AppSidebar({ isAdmin = false }) {
@@ -31,7 +31,7 @@ export function AppSidebar({ isAdmin = false }) {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Library System</SidebarGroupLabel>
+          <SidebarGroupLabel>Kütüphane Sistemi</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -47,7 +47,7 @@ export function AppSidebar({ isAdmin = false }) {
               <SidebarMenuItem>
                 <SidebarMenuButton className="text-red-500">
                   <LogOut className="h-4 w-4" />
-                  <span>Logout</span>
+                  <span>Çıkış Yap</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>

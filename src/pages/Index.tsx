@@ -10,14 +10,14 @@ import { useToast } from "@/hooks/use-toast";
 const mockBooks = [
   {
     id: 1,
-    title: "The Great Gatsby",
+    title: "Büyük Gatsby",
     author: "F. Scott Fitzgerald",
     available: true,
     coverUrl: "https://source.unsplash.com/random/400x600?book",
   },
   {
     id: 2,
-    title: "To Kill a Mockingbird",
+    title: "Bülbülü Öldürmek",
     author: "Harper Lee",
     available: false,
     coverUrl: "https://source.unsplash.com/random/400x600?library",
@@ -38,8 +38,8 @@ const Index = () => {
 
   const handleBorrow = (bookId: number) => {
     toast({
-      title: "Borrow Request Sent",
-      description: "Your request has been sent to the librarian for approval.",
+      title: "Ödünç Alma Talebi Gönderildi",
+      description: "Talebiniz kütüphaneciye iletildi ve onay bekliyor.",
     });
   };
 
@@ -48,8 +48,8 @@ const Index = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="w-full max-w-md space-y-8 p-8">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-library-800 mb-2">Library System</h1>
-            <p className="text-gray-600 mb-8">Please login to continue</p>
+            <h1 className="text-3xl font-bold text-library-800 mb-2">Kütüphane Sistemi</h1>
+            <p className="text-gray-600 mb-8">Devam etmek için lütfen giriş yapın</p>
           </div>
           <LoginForm />
         </div>
@@ -64,10 +64,10 @@ const Index = () => {
         <main className="flex-1 p-8">
           <div className="max-w-7xl mx-auto space-y-8">
             <div className="flex items-center justify-between">
-              <h1 className="text-3xl font-bold text-library-800">Library Catalog</h1>
+              <h1 className="text-3xl font-bold text-library-800">Kitap Kataloğu</h1>
               <Input
                 type="search"
-                placeholder="Search books..."
+                placeholder="Kitap ara..."
                 className="max-w-sm"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}

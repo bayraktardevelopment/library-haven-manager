@@ -12,8 +12,8 @@ export const LoginForm = () => {
     e.preventDefault();
     // TODO: Implement actual login logic
     toast({
-      title: "Login Successful",
-      description: "Welcome back to the library system!",
+      title: "Giriş Başarılı",
+      description: "Kütüphane sistemine hoş geldiniz!",
     });
   };
 
@@ -22,7 +22,7 @@ export const LoginForm = () => {
       <div className="space-y-2">
         <Input
           type="text"
-          placeholder="Username"
+          placeholder="Kullanıcı Adı"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
@@ -31,14 +31,14 @@ export const LoginForm = () => {
       <div className="space-y-2">
         <Input
           type="password"
-          placeholder="Password"
+          placeholder="Şifre"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </div>
       <Button type="submit" className="w-full">
-        Login
+        Giriş Yap
       </Button>
     </form>
   );

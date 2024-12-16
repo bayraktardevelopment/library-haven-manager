@@ -17,7 +17,7 @@ export const BookCard = ({ title, author, available, coverUrl, onBorrow }: BookC
         <div className="flex justify-between items-start">
           <CardTitle className="text-xl font-serif">{title}</CardTitle>
           <Badge variant={available ? "default" : "secondary"}>
-            {available ? "Available" : "Borrowed"}
+            {available ? "Müsait" : "Ödünç Alındı"}
           </Badge>
         </div>
       </CardHeader>
@@ -29,7 +29,7 @@ export const BookCard = ({ title, author, available, coverUrl, onBorrow }: BookC
             className="object-cover rounded-md w-full h-full"
           />
         </div>
-        <p className="text-sm text-muted-foreground">By {author}</p>
+        <p className="text-sm text-muted-foreground">Yazar: {author}</p>
       </CardContent>
       <CardFooter>
         <Button
@@ -38,7 +38,7 @@ export const BookCard = ({ title, author, available, coverUrl, onBorrow }: BookC
           className="w-full"
           variant={available ? "default" : "secondary"}
         >
-          {available ? "Borrow Book" : "Currently Unavailable"}
+          {available ? "Ödünç Al" : "Şu Anda Müsait Değil"}
         </Button>
       </CardFooter>
     </Card>
