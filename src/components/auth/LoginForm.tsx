@@ -3,7 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
-export const LoginForm = () => {
+interface LoginFormProps {
+  onLoginSuccess: () => void;
+}
+
+export const LoginForm = ({ onLoginSuccess }: LoginFormProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { toast } = useToast();
@@ -15,6 +19,7 @@ export const LoginForm = () => {
       title: "Giriş Başarılı",
       description: "Kütüphane sistemine hoş geldiniz!",
     });
+    onLoginSuccess();
   };
 
   return (
