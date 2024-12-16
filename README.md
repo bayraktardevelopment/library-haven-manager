@@ -1,69 +1,97 @@
-# Welcome to your Lovable project
+# Kütüphane Yönetim Sistemi
 
-## Project info
+Bu proje, web tabanlı bir kütüphane yönetim sistemidir. Admin kullanıcıları ve öğrenciler için farklı yetkiler sunar.
 
-**URL**: https://lovable.dev/projects/21145dfb-179f-4d48-b19e-a82d4dc029c5
+## Sistem Gereksinimleri
 
-## How can I edit this code?
+- Docker
+- Docker Compose
 
-There are several ways of editing your application.
+## Kurulum ve Çalıştırma
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/21145dfb-179f-4d48-b19e-a82d4dc029c5) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Projeyi klonlayın:
+```bash
+git clone <proje-url>
+cd kutuphane-yonetim-sistemi
 ```
 
-**Edit a file directly in GitHub**
+2. Docker Compose ile servisleri başlatın:
+```bash
+docker-compose up --build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Tarayıcıda aşağıdaki adreslere erişebilirsiniz:
+- Ana Site: http://localhost
+- API: http://localhost/api
+- Admin Paneli: http://localhost/admin
 
-**Use GitHub Codespaces**
+## Kullanıcı Hesapları
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Admin Kullanıcısı
+- Kullanıcı adı: admin
+- Şifre: kütüphane2024!
+- Yetkiler: Kitap ekleme, öğrenci kaydı, ödünç verme işlemleri onaylama
 
-## What technologies are used for this project?
+### Öğrenci Kullanıcısı
+- Kullanıcı adı: student
+- Şifre: student2024!
+- Yetkiler: Kitap listeleme, ödünç kitap isteğinde bulunma
 
-This project is built with .
+## API Endpoint'leri
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Kimlik Doğrulama
+- POST /api/login/: Giriş yapma
+- POST /api/logout/: Çıkış yapma
 
-## How can I deploy this project?
+### Kitaplar
+- GET /api/books/: Tüm kitapları listele
+- GET /api/books/{id}/: Belirli bir kitabı getir
+- POST /api/books/: Yeni kitap ekle (Yalnızca admin)
+- PUT /api/books/{id}/: Kitap bilgilerini güncelle (Yalnızca admin)
+- DELETE /api/books/{id}/: Kitabı sil (Yalnızca admin)
 
-Simply open [Lovable](https://lovable.dev/projects/21145dfb-179f-4d48-b19e-a82d4dc029c5) and click on Share -> Publish.
+### Ödünç İşlemleri
+- GET /api/lendings/: Tüm ödünç alma işlemlerini listele (Yalnızca admin)
+- POST /api/lendings/: Yeni ödünç alma talebi oluştur
+- GET /api/lendings/my/: Öğrencinin kendi ödünç kitapları
+- PUT /api/lendings/{id}/approve/: Ödünç talebini onayla (Yalnızca admin)
+- PUT /api/lendings/{id}/return/: Kitabı geri ver
 
-## I want to use a custom domain - is that possible?
+### Öğrenciler
+- GET /api/students/: Tüm öğrencileri listele (Yalnızca admin)
+- POST /api/students/: Yeni öğrenci kaydı (Yalnızca admin)
+- GET /api/students/{id}/: Öğrenci detayları (Yalnızca admin)
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+## Sorun Giderme
+
+1. Veritabanı bağlantı hatası:
+```bash
+docker-compose down -v  # Tüm servisleri ve volumeleri kaldır
+docker-compose up --build  # Servisleri yeniden başlat
+```
+
+2. Frontend bağlantı hatası:
+```bash
+docker-compose restart frontend  # Frontend servisini yeniden başlat
+```
+
+3. Backend API hatası:
+```bash
+docker-compose restart backend  # Backend servisini yeniden başlat
+```
+
+## Geliştirme
+
+Projeyi geliştirmek için:
+
+1. Frontend değişiklikleri için:
+- src/ dizininde ilgili değişiklikleri yapın
+- Değişiklikler otomatik olarak yansıyacaktır
+
+2. Backend değişiklikleri için:
+- backend/ dizininde ilgili değişiklikleri yapın
+- `docker-compose restart backend` ile servisi yeniden başlatın
+
+## Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır.

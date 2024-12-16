@@ -15,7 +15,7 @@ services:
       - db
 
   backend:
-    image: python:3.9
+    build: ./backend
     command: bash -c "pip install -r requirements.txt && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./backend:/app
@@ -23,8 +23,10 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=mysql://user:password@db:3306/library_db
+      - DJANGO_SETTINGS_MODULE=library_project.settings
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: mysql:8.0
@@ -37,6 +39,11 @@ services:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   nginx:
     image: nginx:alpine

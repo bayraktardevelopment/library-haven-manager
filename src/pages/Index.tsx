@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/layout/Sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { Book, Search, User } from "lucide-react";
 
 // Mock data for demonstration
 const mockBooks = [
@@ -36,6 +37,16 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
+  const handleLogin = (success: boolean) => {
+    if (success) {
+      setIsLoggedIn(true);
+      toast({
+        title: "Giriş Başarılı",
+        description: "Kütüphane sistemine hoş geldiniz!",
+      });
+    }
+  };
+
   const handleBorrow = (bookId: number) => {
     toast({
       title: "Ödünç Alma Talebi Gönderildi",
@@ -51,7 +62,7 @@ const Index = () => {
             <h1 className="text-3xl font-bold text-library-800 mb-2">Kütüphane Sistemi</h1>
             <p className="text-gray-600 mb-8">Devam etmek için lütfen giriş yapın</p>
           </div>
-          <LoginForm />
+          <LoginForm onLoginSuccess={() => handleLogin(true)} />
         </div>
       </div>
     );
@@ -65,13 +76,18 @@ const Index = () => {
           <div className="max-w-7xl mx-auto space-y-8">
             <div className="flex items-center justify-between">
               <h1 className="text-3xl font-bold text-library-800">Kitap Kataloğu</h1>
-              <Input
-                type="search"
-                placeholder="Kitap ara..."
-                className="max-w-sm"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+                  <Input
+                    type="search"
+                    placeholder="Kitap ara..."
+                    className="pl-10 max-w-sm"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+              </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {mockBooks.map((book) => (
